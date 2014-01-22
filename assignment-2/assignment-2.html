@@ -13,28 +13,35 @@ switch(role){
 	case "1":
 	case "carry":
 	case "hard carry":
-	var farmPref = prompt("Do you like to farm?");
-	farmPref = farmPref.toLowerCase();
-	if(farmPref=="yes"){
-
-	}
-	if(farmPref=="no"){
-
+	var farmPref = confirm("Do you like to farm?");
+	if(farmPref){
+		console.log("You may consider Anti-Mage.");
 	}
 	else{
-
+		console.log("Bristleback may be a good choice for you.");
 	}
 	break;
 
 	case "2":
 	case "mid":
-	//Preference: Ganker or Farmer
+	var midPref = prompt("Do you like to gank? Yes or No?");
+	midPref = midPref.toLowerCase();
+	if(midPref == "yes"){
+		console.log("Give Storm Spirit a try.")
+	}
+	if(midPref == "no"){
+		console.log("Try out Invoker.")
+	}
 	break;
 
 	case "3":
 	case "offlane":
 	case "offlaner":
-	//Preference: Do you like to use Summons or additional units beside your hero?
+	var additionalUnits = prompt("How many additional units do you prefer to control beside your hero?");
+	//additionalUnits = Number(additionalUnits);
+	if(additionalUnits == 5){
+		console.log("Test");
+	}
 	break;
 
 	case "4":
