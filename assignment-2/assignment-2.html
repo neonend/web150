@@ -53,13 +53,26 @@ switch(role){
 	case "4":
 	case "semi-support":
 	case "semi support":
-	//Preference: Do you prefer to be an initiator or farming support?
+	var semiSupportPref = confirm("Click OK if you prefer to get better with farm.");
+	if(semiSupportPref){
+		console.log("Try out Windranger");
+	}
+	else{
+		console.log("Try Lich out.");
+	}
 	break;
 
 	case "5":
 	case "hard support":
+	case "hard-support":
 	case "support":
-	//Preference: Do you prefer to get better with farm, or levels?
+	var supportPref = prompt("Do you prefer to push, or fight?");
+	if(supportPref == "push"){
+		console.log("Venomancer is a good pushing support.");
+	}
+	else{
+		console.log("Visage is a really strong fighting support.")
+	}
 	break;
 }
 </script>
