@@ -13,7 +13,7 @@ switch(role){
 	case "1":
 	case "carry":
 	case "hard carry":
-	var farmPref = confirm("Do you like to farm?");
+	var farmPref = confirm("Click OK if you prefer farming to fighting");
 	if(farmPref){
 		console.log("You may consider Anti-Mage.");
 	}
@@ -30,7 +30,7 @@ switch(role){
 		console.log("Give Storm Spirit a try.")
 	}
 	if(midPref == "no"){
-		console.log("Try out Invoker.")
+		console.log("Try out Outworld Devourer.")
 	}
 	break;
 
@@ -38,9 +38,15 @@ switch(role){
 	case "offlane":
 	case "offlaner":
 	var additionalUnits = prompt("How many additional units do you prefer to control beside your hero?");
-	//additionalUnits = Number(additionalUnits);
-	if(additionalUnits == 5){
-		console.log("Test");
+	additionalUnits = Number(additionalUnits);
+	if(additionalUnits == 1){
+		console.log("Lone Druid is a good choice.");
+	}
+	else if(additionalUnits >1){
+		console.log("Try Nature's Prophet.");
+	}
+	else{
+		console.log("Give Timbersaw a shot.")
 	}
 	break;
 
