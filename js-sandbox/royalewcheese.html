@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<title>Royale with Cheese</title>
+<meta charset=utf8>
+<body>
+<script src="http://thomaswilburn.net/sccc/data/SamuelLJackson.js"></script>
+<script>
+samJackson.name = "Sam Jackson";
+console.log(samJackson.name);
+
+console.log("# of Movies: " + samJackson.credits.length);
+
+//get first genre of second movie
+
+//console.log(samJackson.credits[1].genres[0].name);
+var credits = samJackson.credits;
+var jurassicGenres = credits[1].genres;
+
+var longest = {runtime: 0};
+for(var i = 0;i<credits.length;i++){
+var movie = credits[i];
+console.log(movie.title + ", played character: " + movie.character);
+if(movie.runtime > longest.runtime){
+longest = movie;
+	}
+}
+console.log("Longest movie: " + longest.title, longest.runtime);
+
+//start with zero revenue
+//for each movie,
+var revenueTotal = 0;
+var budgetTotal = 0;
+for (var i=0;i <credits.length;i++){
+	//add revenue to the running total
+	var movie = credits[i];
+	//go to next movie
+	revenueTotal += movie.revenue;
+	budgetTotal += movie.budget;
+}
+
+console.log("Total Revenue = " + revenueTotal);
+console.log("Total Movie costs = " +budgetTotal);
+console.log("Total Profit made = " + (revenueTotal - budgetTotal));
+
+var revenueCount = 0;
+for (var i = 0;i<credits.length;i++){
+if(credits[i].revenue){
+revenueCount++;
+	}
+}
+
+console.log("Average revenue: " + revenueTotal/revenueCount);
+</script>
+
+</body>
+</head>
+</html>
