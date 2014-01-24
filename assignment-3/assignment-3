@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+	<title>Expenditures, Assignment 3</title>
+</head>
+<body>
+<script src="http://thomaswilburn.net/sccc/data/expenditures.js"></script>
+<script>
+//assignment-3
+//highest expenditures
+
+//lowest expenditures
+
+//average expenditure rate
+
+//bonus: How many countries spent more than 5% GDP?
+
+//How many spend less than 1%
+
+//What is the average expenditures for North America?
+
+//Average excluding North America?
+</script>
+</body>
+</html>
