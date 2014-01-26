@@ -44,12 +44,35 @@ averageCount++;
 }
 console.log("The average expenditure percentage between all countries with available data is: " + averageTotal/averageCount)
 //bonus: How many countries spent more than 5% GDP?
-
+var overFiveCount = 0;
+for(var i = 0;i<expenditures.length;i++){
+	var amount = Number(expenditures[i].amount);
+	if(amount>5){
+		overFiveCount++;
+	}
+}
+console.log(overFiveCount + " countries spend more than 5% of their GDP");
 //How many spend less than 1%
-
+var underOneCount = 0;
+for(var i = 0;i<expenditures.length;i++){
+	var amount = Number(expenditures[i].amount);
+	if(amount<1){
+		underOneCount++;
+	}
+}
+console.log(underOneCount + " countries spend less than 1% of their GDP");
 //What is the average expenditures for North America?
-
+var northAmericaTotal = 0;
+for(var i = 0;i<expenditures.length;i++){
+	var country = expenditures[i].country;
+	var amount = Number(expenditures[i].amount);
+	if(country == "United States" || country =="Canada" || country == "Mexico"){
+		northAmericaTotal += amount;
+	}
+}
+console.log("North America spends an average of " +northAmericaTotal/3 +"%");
 //Average excluding North America?
+console.log("The world average, excluding North America is " + (averageTotal - northAmericaTotal)/(averageCount-3));
 </script>
 </body>
 </html>
