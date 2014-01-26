@@ -8,11 +8,25 @@
 <script>
 //assignment-3
 //highest expenditures
+var highest = 0;
+var lowest = 0;
+var average = 0;
+var countryNameHighest = "";
+var countryNameLowest = "";
+var countryNameAverage = "";
 
+for(var i = 0;i<expenditures.length;i++){
+	var amount = expenditures[i].amount;
+	var country = expenditures[i].country;
+if(amount>highest){
+	highest = amount;
+	countryNameHighest = country;
+	}
+}
+console.log("The country that spends the most is: " + country + ", totalling " + highest + " of their GDP.");
 //lowest expenditures
-
 //average expenditure rate
-
+//build one loop that goes through all expenditures, then if statements to pull out the requested data for each question
 //bonus: How many countries spent more than 5% GDP?
 
 //How many spend less than 1%
