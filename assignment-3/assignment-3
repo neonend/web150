@@ -7,14 +7,13 @@
 <script src="http://thomaswilburn.net/sccc/data/expenditures.js"></script>
 <script>
 //assignment-3
-//highest expenditures
+
+//default variables
 var highest = 0;
-var lowest = 0;
-var average = 0;
 var countryNameHighest = "";
 var countryNameLowest = "";
-var countryNameAverage = "";
 
+//highest expenditures
 for(var i = 0;i<expenditures.length;i++){
 	var amount = expenditures[i].amount;
 	var country = expenditures[i].country;
@@ -23,10 +22,27 @@ if(amount>highest){
 	countryNameHighest = country;
 	}
 }
-console.log("The country that spends the most is: " + country + ", totalling " + highest + " of their GDP.");
+console.log("The country that spends the most is: " + countryNameHighest + ", totalling " + highest + " of their GDP.");
 //lowest expenditures
+var lowest = highest;
+for(var i = 0;i<expenditures.length;i++){
+	var amount = expenditures[i].amount;
+	var country = expenditures[i].country;
+	if(amount<lowest){
+		lowest = amount;
+		countryNameLowest = country;
+	}
+}
+console.log("The country that spends the least is: "+countryNameLowest+", totalling "+lowest+" of their GDP.");
 //average expenditure rate
-//build one loop that goes through all expenditures, then if statements to pull out the requested data for each question
+var averageCount = 0;
+var averageTotal = 0;
+for(var i = 0;i<expenditures.length;i++){
+	var amount = Number(expenditures[i].amount);
+averageTotal += amount;
+averageCount++;
+}
+console.log("The average expenditure percentage between all countries with available data is: " + averageTotal/averageCount)
 //bonus: How many countries spent more than 5% GDP?
 
 //How many spend less than 1%
