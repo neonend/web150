@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<title>My first jQuery</title>
+	<meta charset="utf8">
+	<style>
+	.stripe{
+		background:grey;
+	}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<ul class="menu">
+			<li id="american"> Apple
+			<li> Banana Cream
+			<li> Peanut Butter
+			<li> Blackberry
+		</ul>
+	</div>	
+
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script>
+/*
+Selectors to use with jQuery
+- "tag" - selects tag name: li, p, a, div
+- ".class" - selects by class name: .menu-item, .wrapper
+- "#id" - selects by id attribute: #main, #footer
+- "psuedo" - selects based on state: :hover, ::before
+*/
+var menuItems = $(".menu li");
+console.log(menuItems);
+//setter
+menuItems.html("No Pie");
+//getter
+console.log(menuItems.html());
+
+menuItems.css("color", "green");
+menuItems.css("transform", "translate(20px)");
+
+var background = menuItems.css("background");
+console.log(background);
+
+menuItems.fadeOut();
+menuItems.fadeIn();
+menuItems.slideUp();
+menuItems.slideDown();
+
+//var oddItems = $(".menu li:odd");
+var oddItems = menuItems.filter(":odd");
+oddItems.addClass("stripe");
+//oddItems.removeClass("stripe");
+
+var main = $("div.main");
+var menu = main.find(".menu");
+
+var div = menu.closest("div");
+console.log(div);
+
+var menuHeight = menu.height();
+console.log(menuHeight);
+</script>
+</body>
+</html>
