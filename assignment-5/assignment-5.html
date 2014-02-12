@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+	<title>Gallery</title>
+	<meta charset="utf8">
+	<style>
+.thumbnails {padding: 10px; margin: 0px;}
+.thumbnails li{
+	/*
+		I'm unable to keep these from shifting when adjusting the browser window size. If I shrink the browser, the tab elements shift under (creating a second row) and I can't seem to locate online how to change this without breaking the entire gallery. Help?
+	*/
+	display:inline-block;
+	border-radius: 4px 4px 0 0;
+	padding: 16px;
+	border: 1px solid navy;
+}
+.thumbnails img{
+	width:90px;
+	height: 105px;
+}
+.main img{
+	width:630px;
+	height:500px;
+}
+.thumbnails li .active{
+	background: white;
+	border-bottom: 50px solid red;
+}
+	</style>
+</head>
+<body>
+
+<ul class="thumbnails">
+ <li class="active"> <a href="#first"><img src="img/federation.gif"></a>
+ <li> <a href="#second"><img src="img/klingon.png"></a>
+ <li> <a href="#third"><img src="img/cardassian.jpg"></a>
+ <li> <a href="#fourth"><img src="img/romulan.gif"></a>
+ <li> <a href="#fifth"><img src="img/borg.jpg"></a>
+</ul>
+<div class="main" id="first">
+<img src="img/enterprise.jpg">
+</div>
+<div class="main" id="second">
+<img src="img/kvort.jpg">
+</div>
+<div class="main" id="third">
+<img src="img/galor.jpg">
+</div>
+<div class="main" id="fourth">
+<img src="img/warbird.jpg">
+</div>
+<div class="main" id="fifth">
+<img src="img/cube.jpg">
+</div>
+
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script>
+var thumbLinks = $(".thumbnails a");
+thumbLinks.on("click", function(e){
+	e.preventDefault();
+	$(".main:visible").hide();
+	var $this = $(this);
+	var href = $this.attr("href");
+	var mainPic = $(href);
+	mainPic.fadeIn();
+	thumbnail.fadeIn();
+	/*
+	I'm unable to get the Active class working here, perhaps because they are images instead of text? I'm not a very good designer D: The code doesn't break the page, it just simply doesn't do/change anything. I'm not very well versed in CSS (have a very basic understanding of it)
+	Code for the (nonfunctional) active class:
+	$(".active").removeClass("active");
+	var thumbActive = $this.closest("li");
+	thumbActive.addClass("active");
+	*/
+});
+thumbLinks.filter(":first").click();
+</script>
+</body>
+</html>
