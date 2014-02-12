@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<title>Tabs!</title>
+	<meta charset="utf8">
+	<style>
+.tabs {padding: 0; margin: 0;}
+.tabs li {
+	display: inline-block;
+	border: 1px solid black;
+	border-radius: 4px 4px 0 0;
+	padding: 4px;
+	background:#DDD;
+}
+.tabs li.active{
+	background: white;
+	border-bottom: 1px solid red;
+}
+.tab { height: 200px; background: gray; font-size: 32px;}
+	</style>
+</head>
+<body>
+
+	<ul class="tabs">
+		<li class="active"> <a href="#one">One</a>
+		<li> <a href="#two">Two</a>
+		<li> <a href="#three">Three</a>
+	</ul>
+
+	<div class ="tab" id="one">
+		Tab #1
+	</div>
+	<div class ="tab" id="two">
+		Tab #2
+	</div>
+	<div class ="tab" id="three">
+		Tab #3
+	</div>
+	
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script>
+var tabLinks = $(".tabs a");
+tabLinks.on("click", function(e){
+//hide current tab
+	$(".tab:visible").hide();
+//get the <a> that was clicked
+	var $this = $(this);
+//get href value
+	var href = $this.attr("href");
+//find the tab with that value
+	var tab = $(href);
+//show the tab
+	tab.fadeIn();
+//cancel the navigation
+	e.preventDefault();
+//remove any .active classes
+	$(".active").removeClass("active");
+//find the li that was clicked
+	var li = $this.closest("li");
+	li.addClass("active");
+//add the active class
+});
+tabLinks.filter(":first").click(); //.trigger("click");
+</script>
+</body>
+</html>
