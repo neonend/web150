@@ -23,13 +23,26 @@ var assert = function(test, message) {
 };
 
 //1. Create a function that returns a "doubled" string: "hello" -> "hellohello"
-var doubler = function() {};
+var doubler = function(doubled) {
+    var strDouble = doubled + doubled;
+    return strDouble;
+};
+//testing the function
+//console.log(doubler("string"));
+//returns "stringstring"
 
 assert( doubler("a") == "aa", "Double simple strings");
 assert( doubler("bbc") == "bbcbbc", "Double longer strings as well");
 
 //2. Create a function that converts decimal values into percentage strings: .01 -> "1%"
-var makePercentage = function() {};
+var makePercentage = function(input) {
+    var percentage = (input*100) + '%';
+    return percentage;
+};
+
+//testing the function
+//console.log(makePercentage(.157));
+//returns 15.7%
 
 assert( makePercentage(.13) == "13%" );
 assert( makePercentage(1) == "100%" );
@@ -37,7 +50,14 @@ assert( makePercentage(.456) == "45.6%", "Don't round your results");
 
 //3. Create a function that takes two numbers and adds them together. If you
 //feed it a string, it should convert it to a number first.
-var adder = function() {};
+var adder = function(num1, num2) {
+    var total = Number(num1) + Number(num2);
+    return total;
+};
+
+//testing the function
+//console.log(adder("5",5));
+//returns 10
 
 assert( adder(1, 2) == 3, "Numbers should be added together");
 assert( adder("2", 4) == 6, "Strings should be converted to numbers");
@@ -46,15 +66,36 @@ assert( isNaN( adder("abc", 4) ) && typeof adder("abc", 4) == "number", "Bad inp
 //4. Using the concept of function scope, change the variable `greeting` to
 //read "Hello, world!" just by editing the function `sayHello`.
 var greeting;
-var sayHello = function() {};
-
+//console.log(greeting + "Test 1");
+//returns undefinedTest 1
+//shows that "greeting" isn't changed before the function is run
+var sayHello = function() {
+    greeting = "Hello, world!";
+    return greeting;
+};
 sayHello();
+//testing the function
+//console.log(greeting);
+//returns "Hello, world!"
 assert( greeting == "Hello, world!", "sayHello() should alter greeting");
 
 //5. Remember our loops? They're back: update `findTotal` so that it totals up
 //all the numbers in an array that's passed in.
 var samples = [1, 2, 3, 4, 5];
-var findTotal = function() {};
+var findTotal = function(input) {
+    var total = 0;
+    for(var i = 0;i<input.length;i++){
+        total += input[i];
+    }
+    return total;
+};
+//testing function
+//console.log(findTotal(samples));
+//returns 15
+//secondary testing
+//var sample2 = [2,10,20,4]; //should return 36
+//console.log(findTotal(sample2));
+//returned 36
 
 assert( findTotal(samples) == 15, "Function found the correct total");
 
