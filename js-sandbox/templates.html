@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+	<title>Template {{functions}}</title>
+	<meta charset="utf8">
+</head>
+<body>
+
+<div class="cat">
+
+</div>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script type="text/html" id="framed-image">
+<div class="frame">
+	<img class="portrait" src="{{src}}" alt="alt">
+</div>
+<script>
+//first version w/o function
+var helloTemplate = "Hello, {{name}}";
+var helloReplaced = helloTemplate.replace("{{name}}", "World");
+console.log(helloReplaced);
+
+//now as a simple function
+var sayHello = function(name){
+	var hello = helloTemplate.replace("{{name}}", name);
+	return hello;
+}
+console.log(sayHello("Functions"));
+
+//use any template string
+var imgTemplate = '<img src="{{src}}">';
+var sayAnything = function(template, tag, value){
+	var target = "{{" + tag + "}}";
+	var replaced = template.replace(target, value);
+	return replaced;
+};
+
+var anything = sayAnything(imgTemplate, "src", "http://rc.vc/pics/cats/lol/punching_cat.jpg");
+var anyHello = sayAnything(helloTemplate, "name", "Anything");
+console.log(anything);
+console.log(anyHello);
+
+var kitten = "http://rc.vc/pics/cats/lol/punching_cat.jpg";
+var kittenHTML = sayAnything(imgTemplate, "src", kitten);
+var cat = $(".cat");
+cat.html(kittenHTML);
+
+//template function that loads from script
+
+var sayAnything = function(template, tag, value){
+	//set up our "find" within the template
+	var target = "{{" + tag + "}}"; 
+	//find the script element that contains the template
+	var element = $("#" + id);
+	//get the template from it
+	var template = element.html();
+	var replaced = template.replace(target, value);
+	return replaced;
+};
+
+console.log(sayScript("framed-image", "src", "x-jpg"));
+
+//template from a data object
+var template = function(id, data){
+	//find the script element that contains the template
+	var element = $("#" + id);
+	//get the template from it
+	var template = element.html();
+	var replaced = template;
+for (var tag in data){
+	var target = "{{" + tag + "}}";
+	replaced = replaced.replace(target, data[tag]);
+}
+return replaced;
+};
+	template.replace(target, value);
+	
+
+var best  = template("framed-image" {
+	src: "x.jpg", 
+	alt: "Pew pew pew"
+});
+</script>
+</body>
+</html>
