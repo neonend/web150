@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+canvas { border: 1px dotted black; }
+	</style>
+</head>
+<body>
+
+	CANVAS!
+
+	<canvas id="canvas" width=320 height=240>
+		Hey, your browser doesn't support canvas.
+	</canvas>
+
+	<script>
+
+//DOM equivalent of $("#canvas");
+var canvas = document.getElementById("canvas");
+console.log(canvas);
+var context = canvas.getContext("2d");
+context.fillStyle = "pink";
+context.fillRect(20, 100, 10, 100);
+context.fillRect(100, 100, 20, 30);
+context.fillStyle = "purple";
+context.fillRect(200, 100, 10, 10);
+
+context.beginPath();
+context.moveTo(50, 50);
+context.lineTo(100, 100);
+//even though halfway through, the whole path will be red
+context.strokeStyle = "red";
+context.lineTo(200, 200);
+//stroke style only matters here, not during each lineTo()
+context.stroke();
+
+context.beginPath();
+context.arc(200, 50, 20, 0, 2 * Math.PI);
+context.strokeStyle = "black";
+context.stroke();
+context.fillStyle = "yellow";
+context.fill();
+
+context.fillStyle = "gray";
+context.font = '48px "Comic Sans MS"';
+context.fillText("Hello, world", 100, 100);
+context.strokeText("Hello, world", 100, 100);
+
+var drawCircle = function(x, y) {
+	context.beginPath();
+	context.arc(x, y, 20, 0, 2 * Math.PI);
+	context.strokeStyle = "black";
+	context.lineWidth = 2;
+	context.stroke();
+	context.fillStyle = "yellow";
+	context.fill();
+};
+
+//track where the ball is
+var ball = {
+	x: 10,
+	y: 10,
+	dx: 5,
+	dy: 2
+};
+
+var drawFrame = function() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	//redraws all the objects in a frame
+	drawCircle(ball.x +100, ball.y +100);
+	ball.x = ball.x + ball.dx;
+	ball.y = ball.y + ball.dy;
+	// if ball went past top OR bottom
+	if (ball.y >= canvas.height || ball.y <= 0) {
+		//flip its vertical momentum
+		ball.dy = ball.dy * -1;
+	}
+	if (ball.x >= canvas.width || ball.x <= 0) {
+		ball.dx = ball.dx * -1;
+	}
+	setTimeout(drawFrame, 32);
+};
+
+var dataURL = canvas.toDataURL();
+console.log(dataURL);
+
+//var img = $("<img>");
+var img = document.createElement("img");
+//$("body").append(img);
+document.body.appendChild(img);
+//img.attr("src", dataURL);
+img.src = dataURL;
+
+drawFrame();
+
+	</script>
+
+</body>
+</html>

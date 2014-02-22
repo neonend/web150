@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<title>Pongshop Pro!</title>
+	<meta charset="utf8">
+	<style type="text/css">
+canvas{border: solid black;}
+	</style>
+</head>
+<body>
+<canvas id="canvas" width=460 height=290></canvas>
+<script src="jq/jquery-2.1.0.min.js"></script>	
+<!--<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>!-->
+<script>
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
+var $canvas = $(canvas);
+
+var drawCircle = function(x, y) {
+	context.beginPath();
+	context.arc(x, y, 10, 0, 2 * Math.PI);
+	context.fillStyle = "black";
+	context.fill();
+};
+var drawRect = function(x,y,width,height){
+	context.fillRect(x-width/2, y-height/2,width,height);
+};
+
+var ball = {
+	x: 230,
+	y: 145,
+	dx: 9,
+	dy: 3
+};
+
+var paddle = {
+	x: 10,
+	y: 10,
+	dx: 0,
+	dy: 5
+};
+
+var drawFrame = function() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	//redraws all the objects in a frame
+	drawRect(paddle.x, paddle.y, 10, 40);
+	drawCircle(ball.x, ball.y);
+	ball.x = ball.x + ball.dx;
+	ball.y = ball.y + ball.dy;
+	if (ball.y + 10 >= canvas.height || ball.y -10<= 0) {
+		ball.dy = ball.dy * -1;
+	}
+	//code for ball bouncing off walls, will replace with score+restart code instead of bounce
+	if (ball.x + 10>= canvas.width || ball.x -10<= 0) {
+		ball.dx = ball.dx * -1;
+	}
+	//$canvas.keydown(function(e){
+		paddle.y = paddle.y + paddle.dy;
+	//});
+	setTimeout(drawFrame, 32);
+};
+drawFrame();
+</script>
+</body>
+</html>
