@@ -12,19 +12,25 @@
 <button class="shape" data-shape="square">[]</button>
 <button class="shape" data-shape="circle">O</button>
 
-<button class="eraser" data-shape="eraser" data-size="60" data-color="white">ERASE</button>
+<button class="eraser" data-shape="eraser" data-size="60" data-color="white">Eraser</button>
 
 <button class="size" data-size="10">Small</button>
+<button class="size" data-size="20">Medium</button>
 <button class="size" data-size="30">Large</button>
 
 <button class="color" data-color="red">Red</button>
 <button class="color" data-color="blue">Blue</button>
+<button class="color" data-color="orange">Orange</button>
+<button class="color" data-color="black">Black</button>
+
+<button class="clear">Clear All</button>
 <canvas id="canvas" width=800 height=600></canvas>
 <script src="jq/jquery-2.1.0.min.js"></script>
 <!--<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>!-->
 <script>
 
 var canvas = document.getElementById("canvas");
+canvas.width = canvas.width;
 var context = canvas.getContext("2d");
 
 var $canvas = $(canvas);
@@ -92,6 +98,12 @@ var sizes = $(".size");
 sizes.on("click", function(e){
 	var $this = $(this);
 	var size = $this.attr("data-size");
+	var shape = $this.attr("data-shape");
+	var color = $this.attr("data-color");
+	if(brush.color == "white"){
+		brush.size = size;
+		brush.color = "black";
+	}
 	brush.size = size;
 });
 
@@ -105,6 +117,11 @@ colors.on("click", function(e){
 		brush.size = "10";
 	}
 	brush.color = color;
+});
+
+var clear = $(".clear");
+clear.on("click", function(e){
+	canvas.width = canvas.width;
 });
 </script>
 </body>
