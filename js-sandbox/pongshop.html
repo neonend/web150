@@ -16,13 +16,13 @@ var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 var $canvas = $(canvas);
 
-var drawCircle = function(x, y) {
+var drawBall = function(x, y) {
 	context.beginPath();
 	context.arc(x, y, 10, 0, 2 * Math.PI);
 	context.fillStyle = "black";
 	context.fill();
 };
-var drawRect = function(x,y,width,height){
+var drawPaddle = function(x,y,width,height){
 	context.fillRect(x-width/2, y-height/2,width,height);
 };
 
@@ -35,31 +35,51 @@ var ball = {
 
 var paddle = {
 	x: 10,
-	y: 10,
+	y: 145,
 	dx: 0,
-	dy: 5
+	dy: 0
 };
 
-var drawFrame = function() {
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	//redraws all the objects in a frame
-	drawRect(paddle.x, paddle.y, 10, 40);
-	drawCircle(ball.x, ball.y);
+var moveBall = function(){
 	ball.x = ball.x + ball.dx;
 	ball.y = ball.y + ball.dy;
 	if (ball.y + 10 >= canvas.height || ball.y -10<= 0) {
 		ball.dy = ball.dy * -1;
 	}
-	//code for ball bouncing off walls, will replace with score+restart code instead of bounce
-	if (ball.x + 10>= canvas.width || ball.x -10<= 0) {
-		ball.dx = ball.dx * -1;
+//bounces off Right side wall
+if (ball.x + 10>= canvas.width) {
+	ball.dx = ball.dx *-1;
 	}
-	//$canvas.keydown(function(e){
-		paddle.y = paddle.y + paddle.dy;
-	//});
-	setTimeout(drawFrame, 32);
+if (ball.x - paddle.y == paddle.x){
+	ball.dx = ball.dx *-1;
+	}
+}//end moveBall()
+//testing function for initial paddle movement
+/*var movePaddle = function(){
+	paddle.y = paddle.y + paddle.dy;
+	if (paddle.y +25 >= canvas.height || paddle.y -25<= 0){
+		paddle.dy = 0;
+	}
+}*/
+var runGame = function() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	//redraws all the objects in a frame
+	drawPaddle(paddle.x, paddle.y, 12, 55);
+	drawBall(ball.x, ball.y);
+	moveBall();
+	//test function for initial paddle
+	//movePaddle();
+	$canvas.on("keyDown", function(e){
+		if(e.keyCode == 38){
+			paddle.y = paddle.y+10;
+		}else if(keyCode == 40){
+			paddle.y = paddle.dy*-1;
+		}
+	});
+	
+	setTimeout(runGame, 32);
 };
-drawFrame();
+runGame();
 </script>
 </body>
 </html>
