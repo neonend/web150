@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf8">
+</head>
+<body>
+
+<!--Local and Online scripts so I can test and code while offline if needed!-->
+<!--<script src="jq/jquery-2.1.0.min.js"></script>	!-->
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script>
+	var result;
+
+	var request = $.ajax("data.json", {
+		dataType: "json"
+	});
+	request.done(function(data){
+		var body = $("body");
+		for(i=0;i<data.fibonacci.length;i++){
+			body.append("Index " + i + "= "+ data.fibonacci[i]);
+		}
+	});
+	request.fail(function(){
+		console.log("Request Failed");
+	});
+
+</script>
+</body>
+</html>

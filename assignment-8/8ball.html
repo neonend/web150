@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+	<title>Magic 8 Ball</title>
+	<meta charset="utf8">
+</head>
+<body>
+<button id="go">Get your Fortune!</button>
+<div id="result">
+
+</div>
+<!--Local and Online scripts so I can test and code while offline if needed!-->
+<!--<script src="jq/jquery-2.1.0.min.js"></script>-->
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script>
+var eightBall = function(){
+	var request = $.ajax({
+	url: "http://thomaswilburn.net:8080/magic8",
+	dataType: "jsonp",
+	jsonp: "callback"
+});
+
+
+request.done(function(data){
+	$("#result").empty();
+	var answer = data.answer;
+		$("#result").fadeIn(500).html(answer);
+});
+};
+var go = $("#go");
+go.on("click",function(){
+	eightBall();
+});
+</script>
+</body>
+</html>
