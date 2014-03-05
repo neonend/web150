@@ -24,7 +24,7 @@ var eightBall = function(){
 request.done(function(data){
 	$("#result").empty();
 	var answer = data.answer;
-		$("#result").fadeIn(500).html(answer);
+		$("#result").hide().html(answer).fadeIn();
 });
 };
 var go = $("#go");

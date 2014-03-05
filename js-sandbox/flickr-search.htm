@@ -63,11 +63,9 @@ var getFlickr = function(tag){
 
 request.done(function(data){
   $(".results").empty();
-  //console.log(data.photos.photo);
     for(var i=0;i<data.photos.photo.length; i++){
       var photo = data.photos.photo[i];
       var url = flickr.formatURL(photo);
-      //console.log(url);
       var img = $("<img>");
       img.attr("src", url);
       img.attr("title", photo.title);
