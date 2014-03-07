@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Request Denied</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+    <div class="fortune"></div>
+
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script>
+var jsonp = $("ajax").({
+  url: "http://thomaswilburn.net:8080/magic8",
+  dataType: "jsonp"
+});
+
+jsonp.done(function(data) {
+  var result = data.answer;
+});
+
+$(".fortune").html(result);
+    </script>
+  </body>
+</html>

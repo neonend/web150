@@ -1,5 +1,0 @@
-jsonp({
-  "weather": "Sunny, chance of Godzilla",
-  "temp": 80,
-  "tempUnits": "F"
-});

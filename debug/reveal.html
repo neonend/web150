@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Revelations</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+    <nav class="menu">
+      <ul>
+        <li><a href="#first">First!</a></li>
+        <li><a href="#second">Second!</a></li>
+      </ul>
+    </nav>
+
+    <div class="content">
+      <section id="first">
+        I'm the first section!
+      </section>
+      <section id="second">
+        I'm the second section.
+      </section>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script>
+
+var menulinks = $(".menu a");
+menulinks.on("click", function() {
+  var href = this.attr("href");
+  $(".content section').hide();
+  $(href).show();
+});
+menuLinks.filter(":first").click();
+
+    </script>
+  </body>
+</html>
